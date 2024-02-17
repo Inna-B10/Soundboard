@@ -4,6 +4,8 @@ const buttons = document.getElementById("buttons");
 const output = document.getElementById("output");
 const screen = document.querySelector(".screen");
 const power = document.getElementById("power");
+let error = false;
+let errorMessage = "";
 
 /* ========================================================================== */
 /*                            CREATE      ELEMENTS                            */
@@ -109,34 +111,22 @@ power.addEventListener("click", (event) => {
 });
 
 function createButtons() {
-  sounds.forEach((value) => {
-    const array = setButton(value.file);
+  sounds.forEach((element) => {
+    const button = createNode("button", {
+      class: "button-square",
+    });
+    button.textContent = element.key;
+    const playFile = createNode("audio", {
+      src: element.file,
+      id: element.key,
+    });
     const divButton = createNode("div", {
       class: "button-block flex center",
     });
-    array.button.appendChild(array.playFile);
-    divButton.appendChild(array.button);
+    button.appendChild(playFile);
+    divButton.appendChild(button);
     buttons.appendChild(divButton);
   });
-}
-
-function setButton(item) {
-  let playFile = "";
-  let button = "";
-
-  sounds.map((el) => {
-    if (el.file === item) {
-      button = createNode("button", {
-        class: "button-square",
-      });
-      button.textContent = el.key;
-      playFile = createNode("audio", {
-        src: el.file,
-        id: el.key,
-      });
-    }
-  });
-  return { button: button, playFile: playFile };
 }
 
 function playSound(event) {
@@ -151,33 +141,32 @@ function playSound(event) {
     }
   }
 
-  sounds.map((el) => {
-    if (id === el.key) {
-      //prepear file name to display
-      const splitArr = el.file.split("/");
-      let fileString = splitArr[splitArr.length - 1];
-      const firstLetter = fileString.charAt(0).toUpperCase();
-      fileString = firstLetter + fileString.slice(1);
-      const symbol = /-/g;
-      const file = symbol[Symbol.replace](fileString, " ");
-      output.innerText = file;
+  const item = sounds.find((el) => el.key === id);
+  if (item) {
+    // prepear file name to display
+    const splitArr = item.file.split("/");
+    let fileString = splitArr[splitArr.length - 1];
+    const firstLetter = fileString.charAt(0).toUpperCase();
+    fileString = firstLetter + fileString.slice(1);
+    const symbol = /-/g;
+    const file = symbol[Symbol.replace](fileString, " ");
+    output.innerText = file;
 
-      const playingNow = document.getElementById(id);
+    const playingNow = document.getElementById(id);
 
-      volume.disabled = false;
-      volume.addEventListener("input", () => {
-        playingNow.volume = volume.value / 100;
-        currentVol.innerText = volume.value;
-      });
-      playbackRate.disabled = false;
-      playbackRate.addEventListener("input", () => {
-        playingNow.playbackRate = playbackRate.value;
-        currentPbr.innerText = playbackRate.value;
-      });
-      playingNow.play();
-    }
-  });
-  /* ---- To Remove Focus From Target Button / Space Button Stops Sound Now --- */
+    volume.disabled = false;
+    volume.addEventListener("input", () => {
+      playingNow.volume = volume.value / 100;
+      currentVol.innerText = volume.value;
+    });
+    playbackRate.disabled = false;
+    playbackRate.addEventListener("input", () => {
+      playingNow.playbackRate = playbackRate.value;
+      currentPbr.innerText = playbackRate.value;
+    });
+    playingNow.play();
+  }
+  /* ---- To Remove Focus From Target Button and Space Button Can Stop Sound -- */
   if (document.activeElement != document.body) {
     document.activeElement.blur();
   }
