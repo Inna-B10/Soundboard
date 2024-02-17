@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/touchpad.png" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="js/soundboard_oppgave.js" type="module"></script>
+    <title>Soundboard</title>
+  </head>
+  <body>
+    <h1>Click on Power Button to turn on/turn off soundboard</h1>
+    <div id="drumkit" class="flex">
+      <div class="dark-background">
+        <!-- ----------------------------- Upper Line ------------------------------ -->
+        <div class="speaker"></div>
+        <div class="menu flex column">
+          <div class="power flex">
+            <div class="flex">
+              <img src="./images/volume.png" alt="" />
+              <img src="./images/volume.png" alt="" />
+            </div>
+            <div class="flex">
+              <img src="./images/menu.png" alt="" />
+              <!-- <img src="./images/power.png" alt="" /> -->
+              <input id="power" type="submit" value="" class="off" />
+            </div>
+          </div>
+          <!-- ------------------------------- Screen -------------------------------- -->
+          <div class="window">
+            <div class="screen-container">
+              <div class="screen">
+                <div id="output" class="flex center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="speaker"></div>
+        <!-- ----------------------------- Lower Line ------------------------------ -->
+        <!-- Left part with round keys -->
+        <div class="controls">
+          <div class="key-block flex center">
+            <img
+              width="36"
+              alt="Tempo button icon"
+              src="./images/icons/tempo-icon.svg" />
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="36"
+              alt="Tape button icon"
+              src="./images/icons/tape-icon.svg" />
+          </div>
+          <div class="key-block flex column center">
+            <span>1</span>
+            <span class="green">IN</span>
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="36"
+              alt="Mixer button icon"
+              src="./images/icons/mixer-icon.svg" />
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="16"
+              alt="Lift button icon"
+              src="./images/icons/lift-icon.svg" />
+          </div>
+          <div class="key-block flex column center">
+            <span>2</span>
+            <span class="green">OUT</span>
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="36"
+              alt="Synthesizer button icon"
+              src="./images/icons/synthesizer-icon.svg" />
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="16"
+              alt="Drop button icon"
+              src="./images/icons/drop-icon.svg" />
+          </div>
+          <div class="key-block flex column center">
+            <span>3</span>
+            <span class="green">M1</span>
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="36"
+              alt="Drum button icon"
+              src="./images/icons/drum-icon.svg" />
+          </div>
+          <div class="key-block flex center">
+            <img
+              width="16"
+              alt="Split button icon"
+              src="./images/icons/split-icon.svg" />
+          </div>
+          <div class="key-block flex column center">
+            <span>4</span>
+            <span class="green">M2</span>
+          </div>
+        </div>
+        <!-- ---------------------- Square Buttons With Audio ---------------------- -->
+        <div id="buttons"></div>
+        <!-- ------------------------ Right Part With Knobs and sliders ------------ -->
+        <div class="slider flex column">
+          <div class="knobs flex">
+            <img src="./images/knob1.png" alt="" />
+            <img src="./images/knob2.png" alt="" />
+          </div>
+          <div id="range" class="flex"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
