@@ -104,7 +104,7 @@ input[type="range"]::-moz-range-track {
     padding: 0 10px;
     height: 40px;
     border: none;
-    background-image: var(--track-background);
+    background: var(--track-background);
 }
 
 /* -------------------------------------------------------------------------- */
